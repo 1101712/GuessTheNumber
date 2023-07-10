@@ -1,5 +1,3 @@
-# Your code goes here.
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 import random
 
 
@@ -38,3 +36,14 @@ while not game.is_over():
         if guess < 1 or guess > 100:
             # Raising a ValueError if the number is not in the expected range
             raise ValueError("Number must be in the range 1 to 100.")
+
+        # Checking if the guess is correct, too high, or too low
+        result = game.make_guess(guess)
+        if result == "correct":
+            print(f"Congratulations! You found the number in {game.attempts} attempts.")
+        else:
+            print(f"Your guess is {result}. Try again.")
+
+    except ValueError as e:
+        # Handling invalid input from the user
+        print(f"Invalid input: {e}")
