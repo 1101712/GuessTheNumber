@@ -1,7 +1,7 @@
 import random
 
 class GuessTheNumberGame:
-    def __init__(self, low_limit=1, high_limit=10):
+    def __init__(self, low_limit=1, high_limit=100):  # Changed the range of numbers
         # Set the lower and upper limits for the random number
         self.low_limit = low_limit
         self.high_limit = high_limit
@@ -9,7 +9,7 @@ class GuessTheNumberGame:
         # Generate a random number within the specified range
         self.target = random.randint(self.low_limit, self.high_limit)
         
-        # Initialize an empty list to store successful guesses
+        # Initialize an empty list to store the guesses
         self.guesses = []
 
     def check_guess(self, guess):
@@ -24,16 +24,17 @@ class GuessTheNumberGame:
             return "Too high! Try again."
         # If none of the above conditions are met, the guess is correct
         else:
-            # Append the successful guess to the guesses list
-            self.guesses.append(guess)
             return "Congratulations! You've guessed the number!"
 
     def play(self):
         # Start an infinite game loop
         while True:
             try:
-                # Ask the user to guess a number within the specified range
-                guess = int(input(f"Guess a number between {self.low_limit} and {self.high_limit}: "))
+                # Ask the user to guess a number within the specified range, modifying the prompt text
+                guess = int(input(f" Guess the number I'm thinking of between {self.low_limit} and {self.high_limit}: "))
+                
+                # Append the guess to the guesses list, moved from check_guess method
+                self.guesses.append(guess)
                 
                 # Check the user's guess and get the result
                 result = self.check_guess(guess)
@@ -49,7 +50,7 @@ class GuessTheNumberGame:
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
             finally:
-                # Print the number of successful guesses made so far
+                # Print the total number of guesses made so far
                 print(f"You have made {len(self.guesses)} guesses.\n")
 
 # If this script is run directly (not imported as a module), start the game
