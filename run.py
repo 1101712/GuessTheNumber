@@ -1,20 +1,21 @@
 import random
 import json
+import argparse
 
 class GuessTheNumberGame:
-    def __init__(self, low_limit=1, high_limit=100):
+    def __init__(self, start=1, end=100):
         # Set the lower and upper limits for the random number
-        self.low_limit = low_limit
-        self.high_limit = high_limit
+        self.start = start
+        self.end = end
         # Generate a random number within the specified range
-        self.target = random.randint(self.low_limit, self.high_limit)
+        self.target = random.randint(self.start, self.end)
         # Initialize an empty list to store the guesses
         self.guesses = []
         self.leaderboard_file = "leaderboard.json"
 
     def check_guess(self, guess):
         # Validate the guess: it must be within the specified range
-        if guess < self.low_limit or guess > self.high_limit:
+        if guess < self.start or guess > self.end:
             return "Your guess is out of bounds. Try again."
         # If the guess is less than the target, it's too low
         elif guess < self.target:
@@ -31,7 +32,7 @@ class GuessTheNumberGame:
         while True:
             try:
                 # Ask the user to guess a number within the specified range
-                guess = int(input(f"Guess the number I'm thinking of between {self.low_limit} and {self.high_limit}: "))
+                guess = int(input(f"Guess the number I'm thinking of between {self.start} and {self.end}: "))
                 # Append the guess to the guesses list
                 self.guesses.append(guess)
                 # Check the user's guess and get the result
@@ -85,8 +86,33 @@ class GuessTheNumberGame:
     def show_best_score(self, leaderboard):
         if leaderboard:
             print(f"The best score so far is {min(leaderboard)} attempts.")
+ 
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
+parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
+parser.add_argument('--end', type=int, default=100, help='The upper limit of the number range.')
+
+args = parser.parse_args()
 
 # If this script is run directly (not imported as a module), start the game
 if __name__ == "__main__":
-    game = GuessTheNumberGame()
+    game = GuessTheNumberGame(args.start, args.end)
     game.play()
+
+# Create an instance of ArgumentParser which will handle the command-line arguments.
+# The description "Play a game of 'Guess the Number'" will be displayed when help is requested using -h or --help.
+parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
+
+# Add the command-line argument --start.
+# The type=int argument indicates that the value of this argument should be an integer.
+# The default=1 argument indicates that if the user doesn't provide a value for this argument, the default value of 1 will be used.
+# The help argument provides a help text for this argument which will be displayed when help is requested.
+parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
+
+# Add the command-line argument --end, similar to --start.
+parser.add_argument('--end', type=int, default=100, help='The upper limit of the number range.')
+
+# The parse_args() method parses the arguments that were provided when the script was run and returns them as a namespace.
+# In this namespace, the values of the arguments are accessible as attributes (e.g., args.start and args.end).
+args = parser.parse_args()
