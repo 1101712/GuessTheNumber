@@ -16,16 +16,16 @@ class GuessTheNumberGame:
     def check_guess(self, guess):
         # Validate the guess: it must be within the specified range
         if guess < self.start or guess > self.end:
-            return "Your guess is out of bounds. Try again."
+            return False, "Your guess is out of bounds. Try again."
         # If the guess is less than the target, it's too low
         elif guess < self.target:
-            return "Too low! Try again."
+            return True, "Too low! Try again."
         # If the guess is more than the target, it's too high
         elif guess > self.target:
-            return "Too high! Try again."
+            return True, "Too high! Try again."
         # If none of the above conditions are met, the guess is correct
         else:
-            return "Congratulations! You've guessed the number!"
+            return True, "Congratulations! You've guessed the number!"
 
     def play(self):
         # Start an infinite game loop
@@ -33,10 +33,11 @@ class GuessTheNumberGame:
             try:
                 # Ask the user to guess a number within the specified range
                 guess = int(input(f"Guess the number I'm thinking of between {self.start} and {self.end}: "))
-                # Append the guess to the guesses list
-                self.guesses.append(guess)
-                # Check the user's guess and get the result
-                result = self.check_guess(guess)
+                # Check the validity of the guess and get the corresponding message
+                valid, result = self.check_guess(guess)
+                # If the guess is valid (in bounds), append it to the list of guesses
+                if valid:
+                    self.guesses.append(guess)
                 print(result)
                 # If the guess is correct, end the game loop
                 if result == "Congratulations! You've guessed the number!":
@@ -105,7 +106,6 @@ if __name__ == "__main__":
 parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
 
 # Add the command-line argument --start.
-# The type=int argument indicates that the value of this argument should be an integer.
 # The default=1 argument indicates that if the user doesn't provide a value for this argument, the default value of 1 will be used.
 # The help argument provides a help text for this argument which will be displayed when help is requested.
 parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
