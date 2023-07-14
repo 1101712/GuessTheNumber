@@ -88,19 +88,6 @@ class GuessTheNumberGame:
         if leaderboard:
             print(f"The best score so far is {min(leaderboard)} attempts.")
  
-
-# Parse command-line arguments
-parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
-parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
-parser.add_argument('--end', type=int, default=100, help='The upper limit of the number range.')
-
-args = parser.parse_args()
-
-# If this script is run directly (not imported as a module), start the game
-if __name__ == "__main__":
-    game = GuessTheNumberGame(args.start, args.end)
-    game.play()
-
 # Create an instance of ArgumentParser which will handle the command-line arguments.
 # The description "Play a game of 'Guess the Number'" will be displayed when help is requested using -h or --help.
 parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
@@ -116,3 +103,7 @@ parser.add_argument('--end', type=int, default=100, help='The upper limit of the
 # The parse_args() method parses the arguments that were provided when the script was run and returns them as a namespace.
 # In this namespace, the values of the arguments are accessible as attributes (e.g., args.start and args.end).
 args = parser.parse_args()
+# If this script is run directly (not imported as a module), start the game
+if __name__ == "__main__":
+    game = GuessTheNumberGame(args.start, args.end)
+    game.play()
