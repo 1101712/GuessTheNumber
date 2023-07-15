@@ -4,6 +4,9 @@ import argparse
 
 
 class GuessTheNumberGame:
+    """
+    A class to conduct a number-guessing game with leaderboard functionality.
+    """
     def __init__(self, start=1, end=100):
         # Set the lower and upper limits for the random number
         self.start = start
@@ -35,7 +38,7 @@ class GuessTheNumberGame:
                 # Ask the user to guess a number within the specified range
                 guess = int(input(
                     f"Guess the number I'm thinking of between {self.start}"
-                    f"and {self.end}: "))
+                    f" and {self.end}: "))
                 # Check the validity of the guess and get the corresponding
                 # message
                 valid, result = self.check_guess(guess)
@@ -58,7 +61,7 @@ class GuessTheNumberGame:
                 print(f"An unexpected error occurred: {e}")
             finally:
                 # Print the total number of guesses made so far
-                print(f"You have made {len(self.guesses)} guesses.")
+                print(f"You have made {len(self.guesses)} guesses.\n")
 
     def update_leaderboard(self, score):
         # This method updates the leaderboard and saves it to a file.
