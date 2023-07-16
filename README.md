@@ -1,32 +1,30 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Guess The Number Game
 
-Welcome,
+## Overview
+This project is a simple, console-based game where a user is tasked with guessing a random number within a user-defined or deafault range. The game includes a leaderboard feature that keeps track of the fewest number of guesses needed to find the correct number.
+## Features
+- **User-Defined Number Range**: The user has the option to define their preferred range within which a random number will be generated for guessing (default is 1-100).
+- **Random Number Generation**: The game generates a random number within the specified range for the user to guess.
+- **Input Validation**: The game validates user inputs to ensure they are numerical and within the specified range.
+- **Guess Evaluation**: The game provides feedback to the user if their guess is too high, too low, or correct.
+- **Leaderboard**: The game keeps track of the number of guesses made and saves this to a leaderboard.
+## Existing Features
+All features described above are currently implemented and operational.
+## User Experience (UX)
+This game provides a straightforward user experience. Users can define their preferred range for the random number, guess a number within this range, and receive immediate feedback on their guess.
+## Site Goals
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+The main goal of this project is to provide a simple and engaging game for users to play. It aims to test and improve the user's intuitive reasoning and guessing abilities while providing them the flexibility to define their own number range.
 
-## Reminders
+## Compatibility and Responsiveness Testing
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
 
-## Creating the Heroku app
+## Languages Used
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- [Python](https://www.python.org/)
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Frameworks, Libraries & Programs Used
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+- [random](https://docs.python.org/3/library/random.html): for generating random numbers
+- [json](https://docs.python.org/3/library/json.html): for storing and retrieving leaderboard data
+- [argparse](https://docs.python.org/3/library/argparse.html): for handling command-line arguments and allowing the user to define the range of numbers
