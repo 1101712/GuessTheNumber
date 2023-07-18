@@ -113,9 +113,11 @@ class GuessTheNumberGame:
 # will be displayed when help is requested using -h or --help.
 
 
+# Create the parser object
 parser = argparse.ArgumentParser(
     description="Play a game of 'Guess the Number'."
 )
+
 # Add the command-line argument --start.
 # The default=1 argument indicates that if the user doesn't provide a value
 # for this argument, the default value of 1 will be used.
@@ -131,12 +133,36 @@ parser.add_argument(
 )
 
 # The parse_args() method parses the arguments
-# that were provided when the script was run and returns them as a namespace.
-# In this namespace, the values of the arguments are accessible as attributes
-# (e.g., args.start and args.end).
+# Parse the arguments provided by user
 args = parser.parse_args()
-# If this script is run directly (not imported as a module), start the game
+
+# Check if the script is run directly and not imported as a module
 if __name__ == "__main__":
-    game = GuessTheNumberGame(args.start, args.end)
-    game.play()
-    
+    # If user has not provided start and end values as arguments, ask for difficulty level
+    if args.start == 1 and args.end == 100:
+        valid = False
+        while valid is False:
+            print("1 - Easy mode")
+            print("2 - Medium mode")
+            print("3 - Hard mode")
+            difficulty = input("Select difficulty: ")
+            if (difficulty in ["1", "2", "3"]):
+                if (difficulty == "1"):
+                    start = 1
+                    end = 20
+                if (difficulty == "2"):
+                    start = 1
+                    end = 50
+                if (difficulty == "3"):
+                    start = 1
+                    end = 100
+                valid = True
+            else:
+                print("Invalid input, select one of the options")
+
+        game = GuessTheNumberGame(start, end)
+        game.play()
+    # If user has provided start and end values as arguments, use those values to start the game
+    else:
+        game = GuessTheNumberGame(args.start, args.end)
+        game.play()
