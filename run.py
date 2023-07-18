@@ -1,12 +1,19 @@
+"""
+Defines the main() function which starts the game, along with the Game class
+which is responsible for controlling the flow of the game.
+"""
+from pyfiglet import Figlet
+import argparse
 import random
 import json
-import argparse
+import shutil
 
 
 class GuessTheNumberGame:
     """
     A class to conduct a number-guessing game with leaderboard functionality.
     """
+
     def __init__(self, start=1, end=100):
         # Set the lower and upper limits for the random number
         self.start = start
@@ -39,8 +46,7 @@ class GuessTheNumberGame:
                 guess = int(input(
                     f"Guess the number I'm thinking of between {self.start}"
                     f" and {self.end}: "))
-                # Check the validity of the guess and get the corresponding
-                # message
+                # Check the validity of the guess and get the corresponding message
                 valid, result = self.check_guess(guess)
                 # If the guess is valid (in bounds), append it to the list
                 # of guesses
@@ -68,27 +74,30 @@ class GuessTheNumberGame:
         # A try/except block is used to handle errors that might occur
         # when attempting to open the file.
         try:
-            # The open() function is used with 'r' mode (read mode)
-            # to attempt to open the file specified by 'self.leaderboard_file'.
+        """The open() function is used with 'r' mode (read mode)
+        to attempt to open the file specified by 'self.leaderboard_file'. """ 
             with open(self.leaderboard_file, 'r') as file:
-                # If the file opens successfully, the json.load() function
-                # is used to load the JSON data from the file.
-                # The loaded data is expected to be a list of scores and is
-                # assigned to the 'leaderboard' variable.
+                """
+                If the file opens successfully, the json.load() function
+                is used to load the JSON data from the file.
+                The loaded data is expected to be a list of scores and is
+                assigned to the 'leaderboard' variable.
+                """
                 leaderboard = json.load(file)
-        # The FileNotFoundError exception is raised when the file specified
-        # by 'self.leaderboard_file' does not exist.
-        # This is expected to happen the first time this method is called,
-        # as the file has not yet been created.
-        # The json.JSONDecodeError exception is raised when
-        # the json.load() function cannot parse the file's contents.
-        # This could happen if the file is not formatted as valid JSON,
-        # for example, if it was edited manually.
-        # When either of these exceptions occur, an empty list is assigned
-        # to the 'leaderboard' variable as a fallback.
-        # This is because there are no scores to load from the file,
-        # either because it does not exist,
-        # or because its contents could not be read.
+        """
+        The FileNotFoundError exception is raised when the file specified
+        by 'self.leaderboard_file' does not exist.
+        This is expected to happen the first time this method is called,
+        as the file has not yet been created.
+        The json.JSONDecodeError exception is raised when
+        the json.load() function cannot parse the file's contents.
+        This could happen if the file is not formatted as valid JSON,
+        for example, if it was edited manually.
+        When either of these exceptions occur, an empty list is assigned
+        to the 'leaderboard' variable as a fallback.
+        This is because there are no scores to load from the file,
+        either because it does not exist, or because its contents could not be read.    
+        """
         except (FileNotFoundError, json.JSONDecodeError):
             # If the file doesn't exist or cannot be parsed,
             # start a new leaderboard
@@ -107,37 +116,40 @@ class GuessTheNumberGame:
     def show_best_score(self, leaderboard):
         if leaderboard:
             print(f"The best score so far is {min(leaderboard)} attempts.")
-# Create an instance of ArgumentParser
-# which will handle the command-line arguments.
-# The description "Play a game of 'Guess the Number'"
-# will be displayed when help is requested using -h or --help.
 
+"""
+Create an instance of ArgumentParser
+which will handle the command-line arguments.
+The description "Play a game of 'Guess the Number'"
+will be displayed when help is requested using -h or --help.
+Create the parser object
+"""
+parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
 
-# Create the parser object
-parser = argparse.ArgumentParser(
-    description="Play a game of 'Guess the Number'."
-)
-
-# Add the command-line argument --start.
-# The default=1 argument indicates that if the user doesn't provide a value
-# for this argument, the default value of 1 will be used.
-# The help argument provides a help text for this argument
-# which will be displayed when help is requested.
-parser.add_argument(
-    '--start', type=int, default=1, help='The lower limit of the number range.'
-)
+""""
+Add the command-line argument --start.
+The default=1 argument indicates that if the user doesn't provide a value
+for this argument, the default value of 1 will be used.
+The help argument provides a help text for this argument which will be displayed when help is requested.
+"""
+parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
 
 # Add the command-line argument --end, similar to --start.
-parser.add_argument(
-    '--end', type=int, default=100, help='The upper limit of the number range.'
-)
+parser.add_argument('--end', type=int, default=100, help='The upper limit of the number range.')
 
-# The parse_args() method parses the arguments
-# Parse the arguments provided by user
+"""The parse_args() method parses the arguments.
+Parse the arguments provided by user
+"""
 args = parser.parse_args()
 
 # Check if the script is run directly and not imported as a module
 if __name__ == "__main__":
+    # Create a Figlet object with 'slant' as the font style
+    f = Figlet(font='slant')
+    # Use the Figlet object to render the welcome message 'Welcome to Guess the Number Game!' as ASCII art
+    # and then print the resulting ASCII art to the console
+    print(f.renderText('Welcome to Guess the Number Game!'))
+
     # If user has not provided start and end values as arguments, ask for difficulty level
     if args.start == 1 and args.end == 100:
         valid = False
@@ -146,14 +158,14 @@ if __name__ == "__main__":
             print("2 - Medium mode")
             print("3 - Hard mode")
             difficulty = input("Select difficulty: ")
-            if (difficulty in ["1", "2", "3"]):
-                if (difficulty == "1"):
+            if difficulty in ["1", "2", "3"]:
+                if difficulty == "1":
                     start = 1
                     end = 20
-                if (difficulty == "2"):
+                if difficulty == "2":
                     start = 1
                     end = 50
-                if (difficulty == "3"):
+                if difficulty == "3":
                     start = 1
                     end = 100
                 valid = True

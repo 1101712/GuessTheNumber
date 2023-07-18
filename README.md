@@ -1,7 +1,69 @@
 # Guess The Number Game
 
 ## Overview
-This project is a simple, console-based game where a user is tasked with guessing a random number within a user-defined or deafault range. The game includes a leaderboard feature that keeps track of the fewest number of guesses needed to find the correct number.
+
+"Guess the Number" is a simple, yet engaging, game where players are challenged to guess a randomly generated number within a specified range.
+ 
+Players can opt for easy, medium, or hard difficulty levels, which adjust the range of the random number. In easy mode, the range might be from 1 to 20, in medium mode from 1 to 50, and hard mode could even introduce negative numbers, with a range from -50 to 50. This variability keeps the game fresh and exciting, catering to both beginners and seasoned players alike. For those seeking an even greater challenge when playing via console, the game offers the opportunity to specify your range. This customizable feature takes the difficulty level up a notch, providing an intriguing test of deductive reasoning and luck.
+
+On top of this, the game features a leaderboard system to track your scores. With every game, you're not just playing against the system, but also competing with your past performances, aiming to beat your best score each time. 
+
+## How to Play 'Guess the Number'
+### Playing locally on the Console
+
+1. Run the script using Python. You can optionally provide a start and end range by using the `--start` and `--end` arguments. For example:
+
+    ```bash
+    python3 run.py --start 3 --end 980
+    ```
+
+    If you don't provide a start and end range, the script will prompt you to choose a difficulty level:
+
+    ```bash
+    1 - Easy mode (1-20)
+    2 - Medium mode (1-50)
+    3 - Hard mode (-50-50)
+    ```
+
+2. Once the game starts, you'll be asked to guess a number. Enter your guess and press Enter.
+
+    ```bash
+    Guess the number I'm thinking of between 1 and 100:
+    ```
+
+3. The game will tell you if your guess was too high, too low, or correct.
+
+4. If your guess was not correct, you'll be asked to guess again. This will continue until you guess the correct number.
+
+5. Once you've guessed the correct number, the game will end, and it will tell you how many guesses you made.
+
+6. The game keeps track of the number of guesses made in each game and keeps a leaderboard of the best scores.
+
+### Playing on Heroku
+
+1. Open your web browser and navigate to the [Heroku app](https://guess-my-number-cf1fa4bffe60.herokuapp.com/ "This is a URL to this game on Heroku")
+
+2. Here, due to the features of the app, the user does not have the opportunity to choose any range of numbers as in a console game. The script will immediately prompt you to choose a difficulty level:
+
+    ```bash
+    1 - Easy mode (1-20)
+    2 - Medium mode (1-50)
+    3 - Hard mode (-50-50)
+    ```
+
+2. Once the game starts, you'll be asked to guess a number. Enter your guess and press Enter.
+
+    ```bash
+    Guess the number I'm thinking of between 1 and 100:
+    ```
+
+
+3. The game will respond with feedback about whether your guess was too high, too low, or correct, and prompt you to make another guess if necessary.
+
+4. When you've guessed the correct number, the game will end and tell you how many guesses you made. Your score will be added to the leaderboard.
+
+Enjoy the game!
+
 ## Features 
 ![This is a screenshot of console](assets/images/console.jpg "This is a screenshot of console")
 - **User-Defined Number Range**: The user has the option to define their preferred range within which a random number will be generated for guessing (default is 1-100).
