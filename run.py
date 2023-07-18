@@ -74,8 +74,10 @@ class GuessTheNumberGame:
         # A try/except block is used to handle errors that might occur
         # when attempting to open the file.
         try:
-        """The open() function is used with 'r' mode (read mode)
-        to attempt to open the file specified by 'self.leaderboard_file'. """ 
+            """
+            The open() function is used with 'r' mode (read mode)
+            to attempt to open the file specified by 'self.leaderboard_file'.
+            """ 
             with open(self.leaderboard_file, 'r') as file:
                 """
                 If the file opens successfully, the json.load() function
@@ -84,20 +86,17 @@ class GuessTheNumberGame:
                 assigned to the 'leaderboard' variable.
                 """
                 leaderboard = json.load(file)
-        """
-        The FileNotFoundError exception is raised when the file specified
-        by 'self.leaderboard_file' does not exist.
-        This is expected to happen the first time this method is called,
-        as the file has not yet been created.
-        The json.JSONDecodeError exception is raised when
-        the json.load() function cannot parse the file's contents.
-        This could happen if the file is not formatted as valid JSON,
-        for example, if it was edited manually.
-        When either of these exceptions occur, an empty list is assigned
-        to the 'leaderboard' variable as a fallback.
-        This is because there are no scores to load from the file,
-        either because it does not exist, or because its contents could not be read.    
-        """
+                """
+                The FileNotFoundError exception is raised when the file specified
+                by 'self.leaderboard_file' does not exist.
+                This is expected to happen the first time this method is called, as the file has not yet been created.
+                The json.JSONDecodeError exception is raised when
+                the json.load() function cannot parse the file's contents.
+                This could happen if the file is not formatted as valid JSON, for example, if it was edited manually.
+                When either of these exceptions occur, an empty list is assigned to the 'leaderboard' variable as a fallback.
+                This is because there are no scores to load from the file,
+                either because it does not exist, or because its contents could not be read.    
+                """
         except (FileNotFoundError, json.JSONDecodeError):
             # If the file doesn't exist or cannot be parsed,
             # start a new leaderboard
