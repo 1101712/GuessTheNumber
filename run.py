@@ -13,6 +13,9 @@ class GuessTheNumberGame:
     """
     A class to conduct a number-guessing game with leaderboard functionality.
     """
+    def play_again(self):
+        play_again = input("Would you like to play again? (yes/no): ")
+        return play_again.lower() == "yes"
 
     def __init__(self, start=1, end=100):
         # Set the lower and upper limits for the random number
@@ -43,31 +46,38 @@ class GuessTheNumberGame:
         while True:
             try:
                 # Ask the user to guess a number within the specified range
-                guess = int(input(
-                    f"Guess the number I'm thinking of between {self.start}"
-                    f" and {self.end}: "))
+                guess = int(input(f"Guess the number I'm thinking of between {self.start} and {self.end}: "))
                 # Check the validity of the guess and get the corresponding message
                 valid, result = self.check_guess(guess)
-                # If the guess is valid (in bounds), append it to the list
-                # of guesses
+                # If the guess is valid (in bounds), append it to the list of guesses
                 if valid:
                     self.guesses.append(guess)
                 print(result)
                 # If the guess is correct, end the game loop
                 if result == "Congratulations! You've guessed the number!":
-                    self.update_leaderboard(len(self.guesses))  # Update the
-                    # leaderboard with the number of guesses
-                    break
-            # Handle the case where the user's input can't be converted
-            # to an integer
+                    self.update_leaderboard(len(self.guesses))  # Update the leaderboard with the number of guesses
+                    break  # This will exit the loop when the game ends
+            # Handle the case where the user's input can't be converted to an integer
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            # Handle any other exceptions that occur during the game
+                # Handle any other exceptions that occur during the game
             except Exception as e:
                 print(f"An unexpected error occurred: {e}")
             finally:
-                # Print the total number of guesses made so far
+            # Print the total number of guesses made so far
                 print(f"You have made {len(self.guesses)} guesses.\n")
+        # After the game has ended and we're out of the loop, ask if the player wants to play again
+        if self.play_again():
+            # If play_again returns True, start a new game
+            self.play()
+        else:
+            # If play_again returns False, do nothing and the game will end
+            print("Thanks for playing!")
+
+    def play_again(self):
+        # Ask the users if they would like to play again after they finish the game
+        play_again = input("Would you like to play again? (yes/no): \n")
+        return play_again.lower() == "yes"
 
     def update_leaderboard(self, score):
         # This method updates the leaderboard and saves it to a file.
@@ -156,7 +166,7 @@ if __name__ == "__main__":
             print("1 - Easy mode")
             print("2 - Medium mode")
             print("3 - Hard mode")
-            difficulty = input("Select difficulty: ")
+            difficulty = input("Please select difficulty: ")
             if difficulty in ["1", "2", "3"]:
                 if difficulty == "1":
                     start = 1
@@ -169,7 +179,7 @@ if __name__ == "__main__":
                     end = 100
                 valid = True
             else:
-                print("Invalid input, select one of the options")
+                print("Invalid input, please select one of the options\n")
 
         game = GuessTheNumberGame(start, end)
         game.play()
