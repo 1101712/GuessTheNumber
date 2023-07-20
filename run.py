@@ -6,7 +6,7 @@ from pyfiglet import Figlet
 import random
 import json
 import shutil
-
+from colorama import Fore, Style
 
 class GuessTheNumberGame:
     """
@@ -70,13 +70,13 @@ class GuessTheNumberGame:
     def check_guess(self, guess):
         # Validate the guess: it must be within the specified range
         if guess < self.start or guess > self.end:
-            return False, "Your guess is out of bounds. Try again."
+            return False, f"{Fore.BROWN}Your guess is out of bounds. Please try again.{Style.RESET_ALL}"
         elif guess < self.target:
-            return True, "Too low! Try again."
+            return True, f"{Fore.YELLOW}Too low! Please try again.{Style.RESET_ALL}"
         elif guess > self.target:
-            return True, "Too high! Try again."
+            return True, f"{Fore.YELLOW}Too high! Please try again.{Style.RESET_ALL}"
         else:
-            return True, "Congratulations! You've guessed the number!"
+            return True, f"{Fore.GREEN}Congratulations! You've guessed the number!{Style.RESET_ALL}"
 
     def play(self):
         # Start an infinite game loop
@@ -90,7 +90,7 @@ class GuessTheNumberGame:
                 if valid:
                     self.guesses.append(guess)
                 print(result)
-                if result == "Congratulations! You've guessed the number!":
+                if "Congratulations! You've guessed the number!" in result:
                     # Update the leaderboard with the number of guesses
                     self.update_leaderboard(len(self.guesses))
                     break # exit the loop when the game ends
