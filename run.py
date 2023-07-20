@@ -86,9 +86,16 @@ class GuessTheNumberGame:
             with open(self.leaderboard_file, 'r') as file:
                 leaderboard = json.load(file)
         except (FileNotFoundError, json.JSONDecodeError):
-            leaderboard = {"minimum_guesses": float('inf')}
+            leaderboard = {"easy": float('inf'), "medium": float('inf'), "hard": float('inf')}
 
-        leaderboard["minimum_guesses"] = min(score, leaderboard["minimum_guesses"])
+        if self.end == 20:
+            difficulty = "easy"
+        elif self.end == 50:
+            difficulty = "medium"
+        else:
+            difficulty = "hard"
+            
+        leaderboard[difficulty] = min(score, leaderboard[difficulty])
 
         with open(self.leaderboard_file, 'w') as file:
             json.dump(leaderboard, file)
@@ -96,8 +103,9 @@ class GuessTheNumberGame:
         self.show_best_score(leaderboard)
 
     def show_best_score(self, leaderboard):
-        if leaderboard["minimum_guesses"] < float('inf'):
-            print(f"The best score so far is {leaderboard['minimum_guesses']} guesses.")
+        for difficulty in ["easy", "medium", "hard"]:
+            if leaderboard[difficulty] < float('inf'):
+                print(f"The best score so far in {difficulty} mode is {leaderboard[difficulty]} guesses.")
 
 
 if __name__ == "__main__":
