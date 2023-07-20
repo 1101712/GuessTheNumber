@@ -119,33 +119,30 @@ class GuessTheNumberGame:
         # create a new leaderboard with infinite scores for each difficulty        
         except (FileNotFoundError, json.JSONDecodeError):
             leaderboard = {"easy": float('inf'), "medium": float('inf'), "hard": float('inf')}
-        # Identify the difficulty of the current game based on the end number
-        if self.end == 20:
+    
+        # Identify the difficulty of the current game based on the start and end numbers
+        if self.start == 1 and self.end == 20:
             difficulty = "easy"
-        elif self.end == 50:
+        elif self.start == 1 and self.end == 50:
             difficulty = "medium"
-        else:
+        elif self.start == -50 and self.end == 50:
             difficulty = "hard"
-
-        # Update the score for the current difficulty in the leaderboard    
+    
+        # Update the score for the current difficulty in the leaderboard
         leaderboard[difficulty] = min(score, leaderboard[difficulty])
-
+    
         # Write the updated leaderboard back to the file
         with open(self.leaderboard_file, 'w') as file:
             json.dump(leaderboard, file)
+    
+        # Call the show_best_score method with the updated leaderboard and current difficulty
+        self.show_best_score(leaderboard, difficulty)
 
-        # Display the best score for each difficulty
-        self.show_best_score(leaderboard)
-
-    def show_best_score(self, leaderboard):
-        # Iterate over each difficulty level
-        for difficulty in ["easy", "medium", "hard"]:
-            # If a score has been recorded for the difficulty, display it
-            if leaderboard[difficulty] < float('inf'):
-                print(
-                    f"The best score so far in {difficulty} mode is "
-                    f"{leaderboard[difficulty]} guesses.")
-
+    def show_best_score(self, leaderboard, difficulty):
+        if leaderboard[difficulty] < float('inf'):
+            print(
+                f"The best score so far in {difficulty} mode is "
+                f"{leaderboard[difficulty]} guesses.")   
 
 if __name__ == "__main__":
     # Use the Figlet library to generate ASCII art for the welcome message 
