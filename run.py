@@ -25,7 +25,7 @@ class GuessTheNumberGame:
                 # Return a boolean indicating whether the user wants to play again      
                 return play_again.lower() == "yes"
             else:
-                print("Invalid input, please answer with 'yes' or 'no'.\n")
+                print(f"{Fore.BLUE}Invalid input, please answer with 'yes' or 'no'.{Style.RESET_ALL}\n")
 
     def select_difficulty(self):
         valid = False
@@ -49,7 +49,7 @@ class GuessTheNumberGame:
                 # Set valid to True to exit the while loop
                 valid = True
             else:
-                print("Invalid input, please select one of the options\n")
+                print(f"{Fore.BLUE}Invalid input, please select one of the options.{Style.RESET_ALL}\n")
             # Generate a random target number for the player to guess
         self.target = random.randint(self.start, self.end)
         # Reset the list of guesses
@@ -70,7 +70,7 @@ class GuessTheNumberGame:
     def check_guess(self, guess):
         # Validate the guess: it must be within the specified range
         if guess < self.start or guess > self.end:
-            return False, f"{Fore.BROWN}Your guess is out of bounds. Please try again.{Style.RESET_ALL}"
+            return False, f"{Fore.BLUE}Your guess is out of bounds. Please try again.{Style.RESET_ALL}"
         elif guess < self.target:
             return True, f"{Fore.YELLOW}Too low! Please try again.{Style.RESET_ALL}"
         elif guess > self.target:
@@ -96,10 +96,9 @@ class GuessTheNumberGame:
                     break # exit the loop when the game ends
             # Handle the case where the user's input can't be converted to an integer
             except ValueError:
-                print("Invalid input. Please enter a number.")
+                print(f"{Fore.BLUE}Invalid input. Please enter a number.{Style.RESET_ALL}")
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
-            finally:
+                print(f"{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}")
             # Print the total number of guesses made so far
                 print(f"You have made {len(self.guesses)} guesses.\n")
         # After the game has ended and we're out of the loop, ask if the player wants to play again
