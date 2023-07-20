@@ -3,7 +3,6 @@ Defines the main() function which starts the game, along with the Game class
 which is responsible for controlling the flow of the game.
 """
 from pyfiglet import Figlet
-import argparse
 import random
 import json
 import shutil
@@ -21,7 +20,7 @@ class GuessTheNumberGame:
                     self.select_difficulty()
                 return play_again.lower() == "yes"
             else:
-                print("Invalid input, please answer with 'yes' or 'no'.")
+                print("Invalid input, please answer with 'yes' or 'no'.\n")
 
     def select_difficulty(self):
         valid = False
@@ -38,17 +37,15 @@ class GuessTheNumberGame:
                     self.start = 1
                     self.end = 50
                 if difficulty == "3":
-                    self.start = 1
-                    self.end = 100
+                    self.start = -50
+                    self.end = 50
                 valid = True
             else:
                 print("Invalid input, please select one of the options\n")
         self.target = random.randint(self.start, self.end)
         self.guesses = []
 
-    def __init__(self, start=1, end=100):
-        self.start = start
-        self.end = end
+    def __init__(self):
         self.leaderboard_file = "leaderboard.json"
         self.select_difficulty()
 
@@ -103,13 +100,8 @@ class GuessTheNumberGame:
             print(f"The best score so far is {leaderboard['minimum_guesses']} guesses.")
 
 
-parser = argparse.ArgumentParser(description="Play a game of 'Guess the Number'.")
-parser.add_argument('--start', type=int, default=1, help='The lower limit of the number range.')
-parser.add_argument('--end', type=int, default=100, help='The upper limit of the number range.')
-args = parser.parse_args()
-
 if __name__ == "__main__":
     f = Figlet(font='slant')
     print(f.renderText('Welcome to Guess the Number Game!'))
-    game = GuessTheNumberGame(args.start, args.end)
+    game = GuessTheNumberGame()
     game.play()
