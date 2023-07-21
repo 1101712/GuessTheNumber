@@ -18,10 +18,10 @@ class GuessTheNumberGame:
             play_again = input("Would you like to play again? (yes/no): ")
             if play_again.lower() in ["yes", "no"]:
                 if play_again.lower() == "yes":
-                    # Call the select_difficulty method to start a new game
-                    self.select_difficulty()
                     # This will print a blank line for better readability.
                     print()
+                    # Call the select_difficulty method to start a new game
+                    self.select_difficulty()
                 # Return a boolean indicating whether the user wants to play again      
                 return play_again.lower() == "yes"
             else:
@@ -91,6 +91,8 @@ class GuessTheNumberGame:
                     self.guesses.append(guess)
                 print(result)
                 if "Congratulations! You've guessed the number!" in result:
+                    # Print the total number of guesses made in this game
+                    print(f"You made {len(self.guesses)} guesses in this game.\n")
                     # Update the leaderboard with the number of guesses
                     self.update_leaderboard(len(self.guesses))
                     break # exit the loop when the game ends
@@ -100,7 +102,7 @@ class GuessTheNumberGame:
             except Exception as e:
                 print(f"{Fore.RED}An unexpected error occurred: {e}{Style.RESET_ALL}")
             # Print the total number of guesses made so far
-                print(f"You have made {len(self.guesses)} guesses.\n")
+            print(f"You have made {len(self.guesses)} guesses.\n")
         # After the game has ended and we're out of the loop, ask if the player wants to play again
         if self.play_again():
             # If play_again returns True, start a new game
@@ -142,6 +144,7 @@ class GuessTheNumberGame:
             print(
                 f"The best score so far in {difficulty} mode is "
                 f"{leaderboard[difficulty]} guesses.")   
+
 
 if __name__ == "__main__":
     # Use the Figlet library to generate ASCII art for the welcome message 
