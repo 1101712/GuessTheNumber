@@ -135,7 +135,7 @@ class GuessTheNumberGame:
             # If play_again returns True, start a new game
             self.play()
         else:
-            print("Thanks for playing!")
+            print("Bye until next time!")
 
     def update_leaderboard(self, score):
         """

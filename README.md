@@ -2,79 +2,41 @@
 
 ## Overview
 
-"Guess the Number" is a simple, yet engaging, game where players are challenged to guess a randomly generated number within a specified range.
- 
-Players can opt for easy, medium, or hard difficulty levels, which adjust the range of the random number. In easy mode, the range might be from 1 to 20, in medium mode from 1 to 50, and hard mode could even introduce negative numbers, with a range from -50 to 50. This variability keeps the game fresh and exciting, catering to both beginners and seasoned players alike. For those seeking an even greater challenge when playing via console, the game offers the opportunity to specify your range. This customizable feature takes the difficulty level up a notch, providing an intriguing test of deductive reasoning and luck.
-
-On top of this, the game features a leaderboard system to track your scores. With every game, you're not just playing against the system, but also competing with your past performances, aiming to beat your best score each time. 
-
+"Guess the Number" is a simple, yet engaging game that test user's deductive reasoning and luck. The players are challenged to guess a randomly generated number within a specified range. It's not just a game of chance, but also a challenge for logic and intuition. 
+Players can opt for easy, medium, or hard difficulty levels .
+The game also includes a leaderboard feature that keeps track of the best scores. 
 ## How to Play 'Guess the Number'
-### Playing locally on the Console
-
-1. Run the script using Python. You can optionally provide a start and end range by using the `--start` and `--end` arguments. For example:
-
-    ```bash
-    python3 run.py --start 3 --end 980
-    ```
-
-    If you don't provide a start and end range, the script will prompt you to choose a difficulty level:
-
-    ```bash
-    1 - Easy mode (1-20)
-    2 - Medium mode (1-50)
-    3 - Hard mode (-50-50)
-    ```
-
-2. Once the game starts, you'll be asked to guess a number. Enter your guess and press Enter.
-
-    ```bash
-    Guess the number I'm thinking of between 1 and 100:
-    ```
-
-3. The game will tell you if your guess was too high, too low, or correct.
-
-4. If your guess was not correct, you'll be asked to guess again. This will continue until you guess the correct number.
-
-5. Once you've guessed the correct number, the game will end, and it will tell you how many guesses you made.
-
-6. The game keeps track of the number of guesses made in each game and keeps a leaderboard of the best scores.
-
-### Playing on Heroku
-
-1. Open your web browser and navigate to the [Heroku app](https://guess-my-number-cf1fa4bffe60.herokuapp.com/ "This is a URL to this game on Heroku")
-
-2. Here, due to the features of the app, the user does not have the opportunity to choose any range of numbers as in a console game. The script will immediately prompt you to choose a difficulty level:
-
-    ```bash
-    1 - Easy mode (1-20)
-    2 - Medium mode (1-50)
-    3 - Hard mode (-50-50)
-    ```
-
-2. Once the game starts, you'll be asked to guess a number. Enter your guess and press Enter.
-
-    ```bash
-    Guess the number I'm thinking of between 1 and 100:
-    ```
-
-
-3. The game will respond with feedback about whether your guess was too high, too low, or correct, and prompt you to make another guess if necessary.
-
-4. When you've guessed the correct number, the game will end and tell you how many guesses you made. Your score will be added to the leaderboard.
-
+- Run the script to start the game.
+- You will be asked to select a difficulty level:
+   - Easy mode: Guess a number between 1 and 20.
+   - Medium mode: Guess a number between 1 and 100.
+   - Hard mode: Guess a number between -1000 and -1.
+- Guess the number. You will be informed if your guess is too high, too low, or correct.
+- If you guess correctly, you will be told how many guesses you took, and this score will be compared to the leaderboard for the selected difficulty level.
+- After a game finishes, you will be asked if you want to play again.
 Enjoy the game!
+## Leaderboard
+The game includes a leaderboard feature for each difficulty level. The leaderboard records the lowest number of guesses a player has taken to correctly guess the number.
+## Requirements
+- Python 3.6+
+- Libraries: 'pyfiglet', 'colorama'
+## Running the Game in the Command Line
+Run the script in the command line by typing 'python3 run.py'
+## Play Online
+The game is hosted on Heroku and can be played online at [this link](https://guess-my-number-cf1fa4bffe60.herokuapp.com/).
 
 ## Features 
 ![This is a screenshot of console](assets/images/console.jpg "This is a screenshot of console")
-- **User-Defined Number Range**: The user has the option to define their preferred range within which a random number will be generated for guessing (default is 1-100).
-- **Random Number Generation**: The game generates a random number within the specified range for the user to guess.
+- **Dynamic Difficulty Levels**: The user can select between easy, medium, or hard difficulty levels, each offering a different number guessing range.
+- **Random Number Generation**: The game generates a random number within the selected difficulty range for the user to guess.
 - **Input Validation**: The game validates user inputs to ensure they are numerical and within the specified range.
-- **Guess Evaluation**: The game provides feedback to the user if their guess is too high, too low, or correct.
-- **Leaderboard**: The game keeps track of the number of guesses made and saves this to a leaderboard.
-## Existing Features
-All features described above are currently implemented and operational.
+- **Feedback System**: The game provides immediate feedback to the user if their guess is too high, too low, or correct.
+- **Color-Coded Responses**: The game uses different colors for responses to improve readability and provide visual cues.
+- **Leaderboard System**: The game keeps track of the number of guesses made for each difficulty and saves the best score in a leaderboard.
+
 ## User Experience (UX)
-This game provides a straightforward user experience. Users can define their preferred range for the random number, guess a number within this range, and receive immediate feedback on their guess.
+The game offers a user-friendly experience. Users can choose their preferred difficulty level, guess a number within the respective range, and receive immediate feedback on their guesses. The use of color-coding enhances readability and user engagement. The game provides a sense of progression and challenge by tracking the best score for each difficulty level in a leaderboard.
+
 ## Site Goals
 
 The main goal of this game is to provide a simple and engaging opportunity for users to play and have fun. It aims to test and improve the user's intuitive reasoning and guessing abilities while providing them the flexibility to define their own number range.
@@ -82,29 +44,30 @@ The main goal of this game is to provide a simple and engaging opportunity for u
 ## Compatibility and Responsiveness Testing
 
  The application's Python code has been verified with [PEP 8 online validator](https://pep8ci.herokuapp.com/) and [Python Checker](https://www.pythonchecker.com/), passing all checks successfully. This process confirmed that the code complies with Python's PEP 8 style guide and is free from syntax errors, logical issues, and runtime errors.
-## Manual Testing
 
-Manual testing was done on various features of the console game to ensure it works as expected.
+## Manual Testing
 
 | Feature                     | Expectation                                               | Action                                                       | Result                                         |
 |-----------------------------|------------------------------------------------------------|--------------------------------------------------------------|------------------------------------------------|
-| Game start                  | Game prompts for a number guess within the specified range | Started the game                                             | Game started correctly, prompt was displayed  |
+| Game initiation             | Game prompts for difficulty level selection               | Initiated the game                                           | Game started correctly, prompt was displayed  |
+| Difficulty level selection  | Accepts choice and sets appropriate number range          | Selected a difficulty level                                  | Difficulty level was accepted, and number range was correctly set |
 | Input within range          | Accepts number and compares it to the target               | Entered a number within the specified range                  | Number was accepted and correctly evaluated   |
 | Input outside range         | Warns about out-of-range input                             | Entered a number outside the specified range                 | Out-of-range warning was correctly displayed  |
 | Non-number input            | Warns about invalid input                                  | Entered a non-number input                                   | Invalid input warning was correctly displayed |
-| Correct guess               | Congratulates the player and updates the leaderboard       | Guessed the target number                                    | Game correctly ended, leaderboard was updated |
-| Command-line arguments      | Game starts with the specified number range                | Started the game with command-line arguments for number range| Game started with correct number range        |
-| Leaderboard after game end  | Shows the best score so far                                | Checked the leaderboard after the game ended                 | Correct best score was shown                 |
-| Game on different platforms | Game runs without errors                                   | Ran the game on different platforms                          | Game ran successfully without errors          |
+| Correct guess               | Congratulates the player, updates the leaderboard, and prompts to play again | Guessed the target number                                    | Game correctly ended, leaderboard was updated, and play again prompt was shown |
+| Leaderboard after game end  | Shows the best score so far for each difficulty level      | Checked the leaderboard after the game ended                 | Correct best score for each difficulty level was shown                 |
+| Game restart                | Game restarts with a new number range when play again option is chosen | Chose to play again after a game ended | Game restarted correctly with a new number range |
+| Game termination            | Game ends gracefully when play again option is declined    | Declined to play again after a game ended | Game ended correctly with a gratitude message |
+
 ## Manual Testing of User Stories
 
 ### Expectation
 
-A user wants to play a simple but engaging game to test their guessing skills.
+A user wants to play a simple but engaging game to test their guessing skills with varying levels of difficulty.
 
 ### Result
 
-As a user, I found a game that asks me to guess a number within a certain range, providing a simple yet engaging way to test my guessing skills.
+As a user, I found a game that asks me to guess a number within a certain range based on the selected difficulty level, providing a simple yet engaging way to test my guessing skills.
 
 ### Expectation
 
@@ -116,11 +79,11 @@ As a user, I was told how many guesses I made after I guessed the number correct
 
 ### Expectation
 
-A user wants to have the option to define their preferred range within which a random number will be generated for guessing.
+A user wants to have the option to play the game at different difficulty levels, each with a distinct range of numbers.
 
 ### Result
 
-As a user, I found the feature to set my preferred number range using command-line arguments, giving me flexibility in defining the difficulty level.
+As a user, I found the feature to select my preferred difficulty level, which determines the range of numbers for guessing. This provided me with varied levels of challenge and kept the game engaging.
 
 ### Expectation
 
@@ -132,19 +95,47 @@ As a user, I received an out-of-range warning when I guessed a number outside th
 
 ### Expectation
 
-A user wants to keep track of their best performance.
+A user wants to keep track of their best performance for each difficulty level.
 
 ### Result
 
-As a user, I found the leaderboard feature that shows the best score so far, helping me track my performance over time.
+As a user, I found the leaderboard feature that shows the best score so far for each difficulty level, helping me track my performance over time.
 
 ### Expectation
 
-A user wants to play the game on different platforms.
+A user wants clear and visually appealing feedback on their guesses.
 
 ### Result
 
-As a user, I found that the game runs smoothly on multiple platforms, including Windows, Linux, and macOS, allowing me to play the game on my preferred platform.
+As a user, I found that the game provides color-coded feedback on my guesses, enhancing readability and visual appeal.
+
+### Other Game Testing
+
+- **Random Number Generation:** Each time a new game started, a different random number was selected within the defined range. This was verified by playing multiple games and observing the target number.
+
+- **Text Colour:** The game uses different colours to provide feedback to the user, improving readability and overall user experience. Each type of message (instructions, error messages, success messages) displayed in the console has a unique colour, making them easily distinguishable.
+
+- **Play Again Option:** After the user guesses the number correctly, the game asks if the user wants to play again. This was tested by guessing the correct number and observing the game's response. The game correctly offers the option to play again and starts a new game if the user chooses to do so.
+
+- **Input Validation:** The game correctly handles both non-number inputs and numbers outside the specified range. This was tested by entering various invalid inputs and observing the game's response.
+
+- **Guess Evaluation:** The game correctly evaluates the user's guess and provides appropriate feedback, whether the guess is too high, too low, or correct. This was tested by entering various guesses and observing the feedback.
+
+- **Leaderboard Functionality:** The game correctly tracks the user's score (number of guesses) and updates the leaderboard. This was tested by playing multiple games and observing the leaderboard.
+## Logic Flow
+1. Start
+2. Player chooses difficulty level (Easy, Medium, Hard)
+3. Game generates a random number within the range specified by the difficulty level
+4. Game asks player for a guess
+5. If the input is not a number, inform the player and go back to step 4
+6. If the guess is not within the range, inform the player that the guess is out of bounds and go back to step 4
+7. If the guess is lower than the target, inform the player that the guess is too low and go back to step 4
+8. If the guess is higher than the target, inform the player that the guess is too high and go back to step 4
+9. If the guess is correct, congratulate the player, update the leaderboard, and end the guessing part of the game
+10. Ask the player if they want to play again
+11. If the player wants to play again, go back to step 2
+12. If the player doesn't want to play again, end.
+
 ## Deployment
 
 The project was deployed to Heroku using the following steps:
@@ -169,9 +160,7 @@ The project was deployed to Heroku using the following steps:
 
 9. Click on "Deploy Branch".
 
-10. Once the app is built, click on "Open app" to open your newly deployed app.
-## Heroku Deployment Limitations
-This game, designed for a console environment, has been deployed on Herokun. However, Heroku's nature as a web app hosting platform restricts certain console-specific features. Users cannot specify the random number range on Heroku due to its lack of support for Python's `input()` function. Consequently, the game on Heroku uses a default range (1-100). Additionally, due to Heroku's ephemeral filesystem, the leaderboard feature may not function as expected. For the full gaming experience, it is recommended to run the game locally.
+10. Once the app is built, click on 'Open app' to open your newly deployed app.
 
 ## Credits
 
