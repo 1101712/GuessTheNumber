@@ -2,10 +2,10 @@
 
 ## Overview
 
-"Guess the Number" is a simple, yet engaging game that test user's deductive reasoning and luck. The players are challenged to guess a randomly generated number within a specified range. It's not just a game of chance, but also a challenge for logic and intuition. 
+"Guess the Number" is a simple, yet engaging game that tests user's deductive reasoning and luck. The players are challenged to guess a randomly generated number within a specified range. It's not just a game of chance, but also a challenge for logic and intuition. 
 Players can opt for easy, medium, or hard difficulty levels .
 The game also includes a leaderboard feature that keeps track of the best scores. 
-## How to Play 'Guess the Number'
+## How to Play 'Guess The Number Game'
 - Run the script to start the game.
 - You will be asked to select a difficulty level:
    - Easy mode: Guess a number between 1 and 20.
@@ -28,7 +28,7 @@ The game is hosted on Heroku and can be played online at [this link](https://gue
 
 
 ## Features 
-- **Title**: When the users enters the site they are greeted with a very simple page welcoming text created using Pyfiglet which takes ASCII text and renders it into ASCII fonts.
+- **Title**: When the users enter the site they are greeted with a very simple page welcoming text created using Pyfiglet which takes ASCII text and renders it into ASCII fonts.
 ![Title of game and difficulty level](assets/images/welcome-text.jpg "This is a screenshot of console")
 
 - **Dynamic Difficulty Levels**: The user can select between easy, medium, or hard difficulty levels, each offering a different number guessing range.
@@ -220,9 +220,12 @@ The project was deployed to Heroku using the following steps:
 2. [json](https://docs.python.org/3/library/json.html): Another built-in Python library used for storing and retrieving leaderboard data in JSON format.
 3. [Pyfiglet](https://pypi.org/project/pyfiglet/0.8/): A Python library that converts ASCII text into ASCII art fonts, which is used to display the game's title in a more visually appealing format in the console.
 4. [colorama](https://pypi.org/project/colorama/): A Python library used to colorize console output, improving the visual feedback provided to the user during the game.
+5. [GitHub](https://github.com/): used for version control.
+6. [Heroku](https://dashboard.heroku.com/apps):  used to deploy the live project.
+7. [PEP8 Online](http://pep8online.com/): used to validate all the Python code
 
 ## Acknowledgements
 - To Kay Welfare, for providing great psyhological support and motivation.
 - To my mentor Antonio Rodriguez for helping to resolve the technical questions.
-- I would like to mentions Openais ChatGPT, which gave me a huge opportunity to study quick and very efficient.
+- I would like to mentions Openais ChatGPT, which gave me a huge opportunity to study quickly and very efficiently.
 - To the Code Institute slack community.
